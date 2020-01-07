@@ -1,5 +1,5 @@
 .context{
-  margin: 15px;
+  padding: 15px;
 }
 .inputWidth{
   width: 250px;
@@ -9,5 +9,5 @@
 }
 .listMargin{
   margin: 10px 0;
-  width: 350px;
+  width: 325px;
 }

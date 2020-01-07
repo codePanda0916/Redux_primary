@@ -1,35 +1,29 @@
-import { CHANGE_INPUT, ADD_ITEM, DELETE_ITEM } from './actionTypes';
+import * as Action from './actionTypes';
 
-const defaultState = {
-  inputValue: 'Write Something',
-  placeholder: 'Write Something',
-  list: [
-    '早上去上班',
-    '中午去午休',
-    '下午就下班'
-  ]
-}; // 默认数据
-// 方法函数
-export default (state = defaultState, action) => {
-  console.log(action)
-  if (action.type === CHANGE_INPUT) {
+// 方法(纯函数)
+export default (state = {}, action) => {
+  if (action.type === Action.CHANGE_INPUT) {
     let newState = JSON.parse(JSON.stringify(state)); // 深度拷贝
     newState.inputValue  = action.value;
     return newState;
   }
 
-  if (action.type === ADD_ITEM) {
+  if (action.type === Action.ADD_ITEM) {
     let newState = JSON.parse(JSON.stringify(state));
-    newState.list.push(state.inputValue);
+    newState.list.push({id: action.id, name: action.name});
     newState.inputValue = "";
     return newState;
   }
 
-  if (action.type === DELETE_ITEM) {
+  if (action.type === Action.DELETE_ITEM) {
     let newState = JSON.parse(JSON.stringify(state));
     newState.list.splice(action.index,1);
     return newState;
   }
-
+  if(action.type === Action.GET_DATA){
+    let newState = JSON.parse(JSON.stringify(state));
+    newState = action.data;
+    return newState;
+  }
   return state
 }
